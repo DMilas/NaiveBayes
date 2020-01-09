@@ -11,20 +11,17 @@ import naivebayes.constructors.Document;
 import java.util.ArrayList;
 
 /**
- *
  * @author dmilas
  */
 public class ImportDataset {
-   
-    
-    public static ArrayList<Document> dataset=new ArrayList<>();
-    
-    
-    public static void putData(String filename,String Category){
+
+
+    public static ArrayList<Document> dataset = new ArrayList<>();
+
+
+    public static void putData(String filename, String Category) {
         dataset.add(TextTokenizer.tokenize(filename, Category));
     }
-    
-     
-    
-  
+
+
 }

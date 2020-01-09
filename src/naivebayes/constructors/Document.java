@@ -9,18 +9,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
  * @author dmilas
  */
 public class Document {
-    
+
     public Map<String, Integer> tokens;
-    
+
     /**
      * The class of the document
      */
     public String category;
-    
+
     /**
      * Document constructor
      */

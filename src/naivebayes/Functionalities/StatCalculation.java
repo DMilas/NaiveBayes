@@ -8,25 +8,25 @@ import java.util.Map;
 public class StatCalculation {
 
     //Calculates the prior probability of an email belonging to either category
-    public static HashMap<String,Double> calcPriors(Stats stats){
-        HashMap<String,Double> temp=new HashMap<>();
-        for(Map.Entry<String,Integer> entry : stats.categoryCounts.entrySet()){
+    public static HashMap<String, Double> calcPriors(Stats stats) {
+        HashMap<String, Double> temp = new HashMap<>();
+        for (Map.Entry<String, Integer> entry : stats.categoryCounts.entrySet()) {
 
-            temp.putIfAbsent(entry.getKey(),entry.getValue()/(double)stats.n);
+            temp.putIfAbsent(entry.getKey(), entry.getValue() / (double) stats.n);
         }
         return temp;
 
     }
 
-    public static HashMap<String, HashMap<String ,Double>> calcLikelihood(Stats stats,Map<String,Double> priors){
-        HashMap<String,Map<String,Double>> temp=new HashMap<>();
-        for(Map.Entry<String,Map<String,Integer>> entry: stats.categoryJointCount.entrySet()){
-            Map<String,Double> tempValue=new HashMap<>();
-            for(Map.Entry<String,Integer> entryValue : entry.getValue().entrySet()){
-              //ToDo P(x|C)  tempValue.putIfAbsent(entryValue.getKey(),entryValue.getValue()/)
+    public static HashMap<String, HashMap<String, Double>> calcLikelihood(Stats stats, Map<String, Double> priors) {
+        HashMap<String, Map<String, Double>> temp = new HashMap<>();
+        for (Map.Entry<String, Map<String, Integer>> entry : stats.categoryJointCount.entrySet()) {
+            Map<String, Double> tempValue = new HashMap<>();
+            for (Map.Entry<String, Integer> entryValue : entry.getValue().entrySet()) {
+                //ToDo P(x|C)  tempValue.putIfAbsent(entryValue.getKey(),entryValue.getValue()/)
             }
         }
 
-        return  null;
+        return null;
     }
 }

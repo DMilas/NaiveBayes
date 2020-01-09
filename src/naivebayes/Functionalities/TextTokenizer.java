@@ -12,36 +12,35 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- *
  * @author dmilas
  */
 public class TextTokenizer {
-    
-    
-    public static String preprocess(String text){
-        return text.replaceAll("[^a-zA-z]","").toLowerCase();
+
+
+    public static String preprocess(String text) {
+        return text.replaceAll("[^a-zA-z]", "").toLowerCase();
     }
-    
-    public static Document tokenize(String filename, String category){
+
+    public static Document tokenize(String filename, String category) {
         Document doc = new Document();
-        doc.category=category;
-        try{
+        doc.category = category;
+        try {
             Scanner filein = new Scanner(new File(filename));
-            
-            
-            while(filein.hasNext()){
-                String temp=preprocess(filein.next());
-                if(doc.tokens.containsKey(temp)){
-                    doc.tokens.replace(temp,doc.tokens.get(temp)+1);
-                }else{
+
+
+            while (filein.hasNext()) {
+                String temp = preprocess(filein.next());
+                if (doc.tokens.containsKey(temp)) {
+                    doc.tokens.replace(temp, doc.tokens.get(temp) + 1);
+                } else {
                     doc.tokens.put(temp, 1);
                 }
-                
+
             }
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("File Not Found!!!");
         }
-        
+
         return doc;
     }
 }

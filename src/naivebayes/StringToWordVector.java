@@ -6,9 +6,8 @@
 package naivebayes;
 
 /**
- *
  * @author dmilas
  */
 class StringToWordVector {
-    
+
 }
