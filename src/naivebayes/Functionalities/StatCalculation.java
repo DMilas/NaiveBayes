@@ -24,7 +24,6 @@ public class StatCalculation {
             HashMap<String, Double> tempValue = new HashMap<>();
             for (Map.Entry<String, Integer> entryValue : entry.getValue().entrySet()) {
 
-                //if(entryValue.getValue()>frequencyThreshold)
                 tempValue.putIfAbsent(entryValue.getKey(),(entryValue.getValue()/(double)stats.wordcount)*priors.get(entry.getKey()));
             }
             temp.putIfAbsent(entry.getKey(),tempValue);
