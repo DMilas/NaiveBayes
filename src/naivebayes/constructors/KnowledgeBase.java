@@ -23,12 +23,13 @@ public class KnowledgeBase {
     //Log priors  for log(P(c))
     public Map<String, Double> logPriors = new HashMap<>();
     //Log likelihood for P(x|c)
-    public Map<String, Map<String, Double>> logLikelihood = new HashMap();
+    public Map<String, HashMap<String, Double>> logLikelihood = new HashMap<>();
 
     public KnowledgeBase(Stats stats) {
         this.n = stats.n;
         this.c = stats.categoryCounts.size();
         this.logPriors = StatCalculation.calcPriors(stats);
+        this.logLikelihood=StatCalculation.calcLikelihood(stats,logPriors);
     }
 
     public KnowledgeBase() {

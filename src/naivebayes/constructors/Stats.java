@@ -22,10 +22,13 @@ public class Stats {
     //No. JointCounts
     public Map<String, Map<String, Integer>> categoryJointCount;
 
+    public int wordcount;
+
     public Stats() {
         n = 0;
         categoryCounts = new HashMap<>();
         categoryJointCount = new HashMap<>();
+        wordcount=0;
 
     }
 
@@ -33,6 +36,8 @@ public class Stats {
         n = dataset.size();
         categoryCounts = calcCategoryCounts(dataset);
         categoryJointCount = calcJointCount(dataset);
+        wordcount=calcWords(categoryJointCount);
+
     }
 
     public HashMap<String, Integer> calcCategoryCounts(List<Document> dataset) {
@@ -73,6 +78,19 @@ public class Stats {
         );
 
         return categoryJointCount;
+    }
+
+    public int calcWords(Map<String,Map<String,Integer>> jointCount){
+        int temp=0;
+
+        for(Map.Entry<String,Map<String,Integer>> entry : jointCount.entrySet()){
+            for (Map.Entry<String,Integer> entryValue: entry.getValue().entrySet()) {
+                temp+=entryValue.getValue();
+            }
+        }
+
+
+        return temp;
     }
 
 

@@ -19,14 +19,16 @@ public class StatCalculation {
     }
 
     public static HashMap<String, HashMap<String, Double>> calcLikelihood(Stats stats, Map<String, Double> priors) {
-        HashMap<String, Map<String, Double>> temp = new HashMap<>();
+        HashMap<String, HashMap<String, Double>> temp = new HashMap<>();
         for (Map.Entry<String, Map<String, Integer>> entry : stats.categoryJointCount.entrySet()) {
-            Map<String, Double> tempValue = new HashMap<>();
+            HashMap<String, Double> tempValue = new HashMap<>();
             for (Map.Entry<String, Integer> entryValue : entry.getValue().entrySet()) {
-                //ToDo P(x|C)  tempValue.putIfAbsent(entryValue.getKey(),entryValue.getValue()/)
+
+                tempValue.putIfAbsent(entryValue.getKey(),(entryValue.getValue()/(double)stats.wordcount)*priors.get(entry.getKey()));
             }
+            temp.putIfAbsent(entry.getKey(),tempValue);
         }
 
-        return null;
+        return temp;
     }
 }
