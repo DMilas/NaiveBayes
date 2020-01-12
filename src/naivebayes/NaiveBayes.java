@@ -48,6 +48,7 @@ public class NaiveBayes {
     public static void main(String[] args) {
         train();
         predict("Input Data\\Ham\\2");
+        predict("Input Data/Spam/1091477350.8044_550.txt");
     }
 
 
@@ -55,10 +56,11 @@ public class NaiveBayes {
         List<Document> dataset = preprocessDataset("Training Data");
 
         Stats stats = new Stats(dataset);
-
+        //System.out.println(stats.categoryJointCount);
 
 
         knowledgeBase = new KnowledgeBase(stats);
+        //System.out.println(knowledgeBase.logLikelihood);
 
     }
 
@@ -87,16 +89,17 @@ public class NaiveBayes {
         for (Map.Entry<String,Map<String,Double>> n:foundlikelihoods.entrySet()){
             if(n.getKey().toLowerCase().equals("ham")){
                 for(Map.Entry<String,Double> possibility: n.getValue().entrySet()){
-                    PHam*=possibility.getValue();
+                    PHam+=possibility.getValue();
                 }
             }
             else if(n.getKey().toLowerCase().equals("spam")){
                 for(Map.Entry<String,Double> possibility: n.getValue().entrySet()){
-                    PSpam*=possibility.getValue();
+                    PSpam+=possibility.getValue();
                 }
             }
         }
     if(PHam>PSpam) System.out.println("HAM Detected!!! \noink oink");
+    else if (PHam==PSpam) System.out.println("Equal");
     else {
         System.out.println("SPAM Detected!!! \n no oink oink");
     }
@@ -127,6 +130,11 @@ public class NaiveBayes {
 
 
         return dataset;
+    }
+
+    private void calcProb(double d){
+        Double probability =d;
+        Math.log10(probability);
     }
 
 
