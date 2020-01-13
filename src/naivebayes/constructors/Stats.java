@@ -15,6 +15,7 @@ import java.util.Map;
 public class Stats {
     //No. of Observations 
     public int n;
+    private int frequencyThreshold=10;
 
     //No. CategoryCounts
     public Map<String, Integer> categoryCounts;
@@ -76,8 +77,25 @@ public class Stats {
 
                 }
         );
+        HashMap<String, Map<String, Integer>> tempJointCount = new HashMap<>();
 
-        return categoryJointCount;
+        for (Map.Entry<String,Map<String,Integer>> entry: categoryJointCount.entrySet()) {
+            HashMap<String,Integer> tempValues=new HashMap<>();
+            for (Map.Entry<String,Integer> entryValue: entry.getValue().entrySet()) {
+                if(entryValue.getValue()>frequencyThreshold)tempValues.putIfAbsent(entryValue.getKey(),entryValue.getValue());
+            }
+            tempJointCount.putIfAbsent(entry.getKey(),tempValues);
+        }
+
+        /*categoryJointCount.values().forEach((m)->{
+            m.forEach((p,r)->{
+                if(r<frequencyThreshold)m.remove(p);
+            });
+        });*/
+
+
+
+        return tempJointCount;
     }
 
     public int calcWords(Map<String,Map<String,Integer>> jointCount){
